@@ -708,6 +708,3 @@ except Exception as e:
     print(f"Error starting ngrok tunnel: {e}")
     print("Please ensure your ngrok authtoken is correctly set in Colab Secrets and has 'Notebook access' enabled.")
     print("You can get an authtoken from https://ngrok.com/signup.")
-
-# Display the content of nohup.out to check for Streamlit errors
-!cat nohup.out
