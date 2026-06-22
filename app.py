@@ -17,7 +17,7 @@ from sklearn.model_selection import train_test_split
 
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Fraud & Campaign Analytics",
+    page_title="Customer Segmentation & Recommendation Engine",
     page_icon="🔍",
     layout="wide",
 )
@@ -259,7 +259,7 @@ mode_badge = (
     else '<span class="mode-badge mode-default">default data</span>'
 )
 
-st.markdown(f"# Fraud & Campaign Analytics {mode_badge}", unsafe_allow_html=True)
+st.markdown(f"# Customer Segmentation & Recommendation Engine {mode_badge}", unsafe_allow_html=True)
 st.markdown(
     "<div class='byline'>By: Ashwath Shankarkri · Soham Srinivas · Keshauv Prakash · Sai Vasanth</div>",
     unsafe_allow_html=True
