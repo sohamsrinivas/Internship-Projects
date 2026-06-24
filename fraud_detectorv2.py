@@ -20,6 +20,8 @@ Usage:
   python fraud_detector.py --ask "Why is recall important?"  # AI analyst
 """
 
+import streamlit as st
+st.write("This app runs in the terminal, not Streamlit. Use: python fraud_detector.py")
 import argparse
 import math
 import random
