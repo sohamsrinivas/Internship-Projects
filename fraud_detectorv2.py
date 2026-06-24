@@ -268,7 +268,7 @@ if "data" not in st.session_state:
 # ══════════════════════════════════════════════════════════════════════════════
 col_h1, col_h2 = st.columns([3,1])
 with col_h1:
-    st.markdown("## 🛡️ GuardRisk &nbsp; <span style='font-size:.8rem;color:#3a8fd1;background:#0d2236;padding:3px 12px;border-radius:20px;border:1px solid #1e4060'>ML Pipeline</span>", unsafe_allow_html=True)
+    st.markdown("## 🛡️ GuardRisk &nbsp; <span style='font-size:.8rem;color:#3a8fd1;background:#0d2236;padding:3px 12px;border-radius:20px;border:1px solid #1e4060'>ML Pipeline</span> &nbsp; <span style='font-size:.75rem;color:#4a5f70'>by Soham Srinivas</span>", unsafe_allow_html=True)
     data = st.session_state.data
     fraud_count = sum(r.fraud for r in data)
     st.caption(f"{len(data):,} transactions · {fraud_count} fraud ({fraud_count/len(data)*100:.0f}%) · 3 models · source: **{st.session_state.data_source}**")
@@ -277,7 +277,7 @@ with col_h1:
 # Global controls (sidebar)
 # ══════════════════════════════════════════════════════════════════════════════
 with st.sidebar:
-    st.markdown("### ⚙️ Controls")
+    st.markdown("### Controls")
     selected_model = st.selectbox("Model", ["Random Forest", "Gradient Boosting", "Logistic Regression"])
     model_key = {"Random Forest":"RF","Gradient Boosting":"GB","Logistic Regression":"LR"}[selected_model]
     threshold = st.slider("Decision threshold", 0.1, 0.9, 0.5, 0.01)
@@ -299,7 +299,7 @@ m = all_metrics[model_key]
 # ══════════════════════════════════════════════════════════════════════════════
 # Tabs
 # ══════════════════════════════════════════════════════════════════════════════
-tabs = st.tabs(["📊 Overview", "🤖 Models", "🔍 Explainability", "⚡ Live Scorer", "💬 AI Analyst", "📂 Import Data"])
+tabs = st.tabs(["Overview", "Models", "Explainability", "Live Scorer", "AI Analyst", "Import Data"])
 TAB_OVERVIEW, TAB_MODELS, TAB_EXPLAIN, TAB_SCORER, TAB_AI, TAB_IMPORT = tabs
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -497,8 +497,8 @@ with TAB_EXPLAIN:
     plt.close()
 
     legend_c1, legend_c2 = st.columns(2)
-    legend_c1.markdown("🔴 **Pushes toward fraud**")
-    legend_c2.markdown("🔵 **Pushes toward non-fraud**")
+    legend_c1.markdown("**— Pushes toward fraud**")
+    legend_c2.markdown("**— Pushes toward non-fraud**")
 
     st.markdown("---")
     eng_c1, eng_c2 = st.columns(2)
@@ -675,7 +675,7 @@ with TAB_AI:
 # ─────────────────────────────────────────────────────────────────────────────
 with TAB_IMPORT:
     if st.session_state.data_source != "demo":
-        st.success(f"✅ Currently using imported data: **{st.session_state.data_source}**")
+        st.success(f"Currently using imported data: **{st.session_state.data_source}**")
         if st.button("Reset to demo data"):
             st.session_state.data = generate_dataset(400)
             st.session_state.data_source = "demo"
@@ -701,7 +701,7 @@ with TAB_IMPORT:
             map_cols = st.columns(2)
             for i, (canon, label, required) in enumerate(col_defs):
                 mapped = col_map.get(canon)
-                icon = "✅" if mapped else ("❌" if required else "⚪")
+                icon = "+" if mapped else ("-" if required else "o")
                 map_cols[i%2].markdown(f"{icon} `{label}` → `{mapped or 'not found'}`")
 
             # Data preview
@@ -722,5 +722,5 @@ with TAB_IMPORT:
     st.code("amount, fraud, [hour_of_day], [is_new_merchant],\ntransaction_count_last_24h], [avg_transaction_value],\n[transaction_velocity], [risk_score]", language="text")
     st.caption("Column names are matched fuzzily — e.g. `transaction_amount`, `tx_amount`, or `value` all map to `amount`. Optional columns are computed from available data if absent.")
 
-    st.download_button("⬇️ Download sample CSV", data=SAMPLE_CSV,
+    st.download_button("Download sample CSV", data=SAMPLE_CSV,
                        file_name="sample_fraud_data.csv", mime="text/csv")
