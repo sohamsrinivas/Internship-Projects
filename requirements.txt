@@ -1,5 +1,10 @@
 streamlit
+scikit-learn
 pandas
 numpy
-scikit-learn
-matplotlib
+joblib
+bertopic
+sentence-transformers
+umap-learn
+hdbscan
+textblob
